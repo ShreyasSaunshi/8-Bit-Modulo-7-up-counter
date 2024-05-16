@@ -1,0 +1,24 @@
+module Modulo7Counter8Bit(clk,reset,Q);
+input clk,reset;
+output [7:0]Q;
+wire [7:0]Qb;
+wire d2,d1,d0;
+wire w0,w1,w2,w3,w4,w5,w6;
+and a0(w0,Qb[2],Q[1],Qb[0]);
+and a1(w1,Qb[1],Q[0]);
+or o0(d1,w0,w1);
+and a2(w3,Q[2],Qb[1]);
+and a3(w4,Q[1],Q[0]);
+or o1(d2,w3,w4);
+and a4(w5,Qb[1],Qb[0]);
+and a5(w6,Qb[2],Qb[0]);
+or o2(d0,w5,w6);
+DFlipFlop dff7(.D(Q[7]), .reset(reset), .clk(clk), .Q(Q[7]), .Qb(Qb[7]));
+DFlipFlop dff6(.D(Q[6]), .reset(reset), .clk(clk), .Q(Q[6]), .Qb(Qb[6]));
+DFlipFlop dff5(.D(Q[6]), .reset(reset), .clk(clk), .Q(Q[5]), .Qb(Qb[5]));
+DFlipFlop dff4(.D(Q[4]), .reset(reset), .clk(clk), .Q(Q[4]), .Qb(Qb[4]));
+DFlipFlop dff3(.D(Q[3]), .reset(reset), .clk(clk), .Q(Q[3]), .Qb(Qb[3]));
+DFlipFlop dff2(.D(d2), .reset(reset), .clk(clk), .Q(Q[2]), .Qb(Qb[2]));
+DFlipFlop dff1(.D(d1), .reset(reset), .clk(clk), .Q(Q[1]), .Qb(Qb[1]));
+DFlipFlop dff0(.D(d0), .reset(reset), .clk(clk), .Q(Q[0]),.Qb(Qb[0]));
+Endmodule
